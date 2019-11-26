@@ -3,7 +3,7 @@
 //  The MUT v5
 //
 //  Created by Michael Levenick on 5/24/19.
-//  Copyright © 2019 Michael Levenick. All rights reserved.
+//  Copyright © 2019 Levenick Enterprises, LLC. All rights reserved.
 //
 
 import Foundation
@@ -74,11 +74,11 @@ public class dataPreparation {
     public func expectedColumns(endpoint: String) -> Int {
         switch endpoint {
         case "users":
-            return 7
+            return 9
         case "computers":
-            return 19
+            return 20
         case "mobiledevices":
-            return 18
+            return 19
         case "scope":
             return 1
         default:
@@ -92,7 +92,7 @@ public class dataPreparation {
             return "scope"
         } else {
             switch headerRow[0] {
-            case "Username":
+            case "Current Username":
                 return "users"
             case "Computer Serial":
                 return "computers"
@@ -157,7 +157,7 @@ public class dataPreparation {
         return dictID
     }
     
-    
+    //Comment
     //Builds a dictionary of all attributes being modified, pairing key-values for every attribute.
     //used for tableMain
     public func buildDict(rowToRead: Int, ofArray: [[String]]) -> [[String : String]] {

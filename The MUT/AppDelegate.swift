@@ -3,18 +3,16 @@
 //  The MUT v5
 //
 //  Created by Michael Levenick on 5/24/19.
-//  Copyright © 2019 Michael Levenick. All rights reserved.
+//  Copyright © 2019 Levenick Enterprises, LLC. All rights reserved.
 //
-
-// THIS IS ALL OLD CODE!!!
-// THIS ENTIRE CLASS SHOULD BE REWRITTEN
 
 import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
+    let delegateDefaults = UserDefaults.standard
+    let popUp = popPrompt()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -174,5 +172,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return .terminateNow
     }
 
+    @IBAction func btnOpenReadMe(_ sender: NSMenuItem) {
+        if let pdfURL = Bundle.main.url(forResource:"README", withExtension: "pdf"){
+            print(pdfURL.absoluteString)
+            if NSWorkspace.shared.open(pdfURL) {
+                print("pdf successfully opened")
+            }
+        }
+    }
+    
+    @IBAction func btnUsernameInt(_ sender: Any) {
+        delegateDefaults.set("true", forKey: "UserInts")
+        _ = popUp.generalWarning(question: "Usernames are Ints", text: "MUT normally assumes 'usernames' without letters are actually User IDs. By selecting this option, you are telling MUT your usernames do not have letters in them.\n\nMUT will remember this. If you wish to undo this, please choose 'Clear stored values' from the settings menu.")
+    }
+    
 }
 
